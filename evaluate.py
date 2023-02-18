@@ -38,7 +38,20 @@ def evaluate_model(model):
     print("Accuracy: {:5.2f}%".format(100 * acc))
     return loss,acc
 
-reconstructed_model = keras.models.load_model(r"C:\Users\DELL\PycharmProjects\FYP_proj\Model_KFOLDS")
+model = keras.models.load_model(r"C:\Users\DELL\PycharmProjects\FYP_proj\Model_KFOLDS")
 
 
-loss,acc = evaluate_model(reconstructed_model)
+loss,acc = evaluate_model(model)
+
+predict = model.predict(X_test)
+
+
+predictions = model.predict(X_test).argmax(axis=1)
+
+print(predictions)
+print(y_test)
+
+print(accuracy_score(y_true=y_test,y_pred=predictions))
+print(classification_report(y_test,predictions))
+# creating a confusion matrix
+print(confusion_matrix(y_test, predictions) )
