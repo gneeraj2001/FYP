@@ -16,6 +16,8 @@ for path in df.Path:
 print("Extraction done")
 features_extracted = pd.DataFrame(X)
 
+print(features_extracted.T)
+
 # Expand Dimesion of Input Audio sample to input to model
 features_extracted = np.expand_dims(features_extracted, axis=2)
 
@@ -40,3 +42,4 @@ def use_case_evaluation(prediction):
 predictions = reconstructed_model.predict(features_extracted)
 top2_preds, decoded_string = use_case_evaluation(predictions)
 print(top2_preds)
+
